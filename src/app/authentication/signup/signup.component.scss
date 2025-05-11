@@ -1,0 +1,21 @@
+.center-box{
+    height: auto;
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.password-container{
+    position: relative;
+}
+
+.password-icon{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.logintext{
+    color: #23c6b1;
+    cursor: pointer;
+}

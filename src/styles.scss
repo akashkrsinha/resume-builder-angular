@@ -1,1 +1,156 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+$primary: #23c6b1;
+$secondary: rgb(255, 108, 108);
+$primary-btn: rgb(146, 0, 175);
+
+.left-bg{
+    background-image: url('../../../assets/images/left-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.right-bg {
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+.br-6 {
+    border-radius: 6px;
+}
+
+.fs-25 {
+    font-size: 25px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-65 {
+    width: 65%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.h-80 {
+    height: 80%;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.textfield {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid grey;
+    margin-top: 20px;
+}
+
+.primary-button {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background-color: $primary;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    color: white;
+}
+
+.primary-button:hover:not(:disabled) {
+    background-color: #026e60;
+}
+
+.secondary-button {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background-color: $secondary;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    color: white;
+}
+
+.secondary-button:hover {
+    background-color: rgb(252, 31, 31);
+}
+
+.invalid-button{
+    cursor:not-allowed;
+    opacity: .5;
+}
+
+.header {
+    color: #23c6b1;
+}
+
+.backdropBackground {
+    backdrop-filter: blur(20px);
+}
+
+.validationError {
+    color: red;
+    font-size: 12px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.width-left{
+    width: 45%;
+}
+
+.width-right{
+    width: 55%;
+}
+
+@media (min-width: 576px){
+    .width-left{
+        width: 40%;
+    }
+
+    .width-right{
+        width: 60%;
+    }
+}
+
+@media (min-width: 768px){
+    .width-left{
+        width: 30%;
+    }
+
+    .width-right{
+        width: 70%;
+    }
+}
