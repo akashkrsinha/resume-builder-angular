@@ -1,0 +1,13 @@
+.outer-container {
+    background: #020024;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(99, 99, 255, 1) 0%, rgba(41, 255, 230, 1) 100%, rgba(49, 147, 189, 1) 100%);
+}
+
+.not-found-text {
+    color: rgb(255, 0, 0);
+    font-weight: 500;
+}
+
+.router-link {
+    color: blue;
+}

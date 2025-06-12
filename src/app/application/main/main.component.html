@@ -1,0 +1,21 @@
+<div class="container-fluid main-container p-4 h-auto">
+  <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="true"
+    (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
+
+  <div class="mt-6 h-auto">
+    <div class="d-flex justify-content-center align-items-center">
+      <ng-container [ngSwitch]="activeIndex">
+        <div [ngClass]="{'form-container': activeIndex != 6, 'w-100': activeIndex == 6 }">
+          <app-personal-information-form *ngSwitchCase="0" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-personal-information-form>
+          <app-education-details-form *ngSwitchCase="1" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-education-details-form>
+          <app-work-experience-form *ngSwitchCase="2" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-work-experience-form>
+          <app-skill-details-form *ngSwitchCase="3" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-skill-details-form>
+          <app-project-details-form *ngSwitchCase="4" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-project-details-form>
+          <app-summary-details-form *ngSwitchCase="5" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-summary-details-form>
+          <app-resume-review *ngSwitchCase="6" (previousClicked)="previousClicked()"></app-resume-review>
+          <!-- <app-certification-details-form *ngSwitchCase="5"></app-certification-details-form> -->
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

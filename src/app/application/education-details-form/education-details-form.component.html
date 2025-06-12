@@ -1,0 +1,182 @@
+<div class="container">
+    <div class="text-center fw-bold fs-5 mb-3">Educational Details</div>
+
+    <form [formGroup]="educationForm">
+        <!-- Graduation Form -->
+        <div formGroupName="graduationForm">
+            <div class="fw-bold fs-5">Graduation</div>
+            <div class="row">
+                <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
+                    <span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="instituteName" />
+            </div>
+
+            <!--Validation Error message for Institution Name -->
+            <div class="row" *ngIf="educationForm.get('graduationForm.instituteName')?.touched">
+                <div class="col-6"></div>
+                <div *ngIf="educationForm.get('graduationForm.instituteName')?.errors?.['pattern']"
+                    class="col-6 validationError">Only alphabets are allowed</div>
+                <div *ngIf="educationForm.get('graduationForm.instituteName')?.errors?.['required']"
+                    class="col-6 validationError">Institution Name is required</div>
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
+                        class="ms-3">:</span></label>
+                <input type="date" class="col-6" formControlName="startDate" [attr.max]="today"
+                    (ngModelChange)="startDateChanges('graduationForm')">
+            </div>
+
+            <!--Validation Error message for Start Date -->
+            <div class="row" *ngIf="educationForm.get('graduationForm.startDate')?.touched">
+                <div class="col-6"></div>
+                <div *ngIf="educationForm.get('graduationForm.startDate')?.errors?.['required']"
+                    class="col-6 validationError">Start Date is required</div>
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
+                        class="ms-3">:</span></label>
+                <input type="date" class="col-6" formControlName="endDate" [attr.max]="today"
+                    (ngModelChange)="endDateChanges('graduationForm')">
+            </div>
+
+            <!--Validation Error message for End date -->
+            <div class="row" *ngIf="educationForm.get('graduationForm.endDate')?.errors?.['required']">
+                <div class="col-6"></div>
+                <div class="col-6 validationError">End date is required</div>
+            </div>
+
+            <div class="row" *ngIf="graduationFormEndDateError">
+                <div class="col-6"></div>
+                <div class="col-6 validationError">End date must be greater than or equal to start date</div>
+            </div>
+
+
+            <div class="row mt-2">
+                <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="marks">
+            </div>
+        </div>
+
+        <!-- 12th Form -->
+        <div formGroupName="twelveForm" class="mt-5">
+            <div class="fw-bold fs-5">12th Details</div>
+            <div class="row">
+                <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
+                    <span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="instituteName" />
+            </div>
+            <!--Validation Error message for Institution Name -->
+            <div class="row" *ngIf="educationForm.get('twelveForm.instituteName')?.touched">
+                <div class="col-6"></div>
+                <div *ngIf="educationForm.get('twelveForm.instituteName')?.errors?.['pattern']"
+                    class="col-6 validationError">Only alphabets are allowed</div>
+                <div *ngIf="educationForm.get('twelveForm.instituteName')?.errors?.['required']"
+                    class="col-6 validationError">Institution Name is required</div>
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
+                        class="ms-3">:</span></label>
+                <input type="date" class="col-6" formControlName="startDate" [attr.max]="today"
+                    (ngModelChange)="startDateChanges('twelveForm')">
+            </div>
+
+            <!--Validation Error message for Start Date -->
+            <div class="row" *ngIf="educationForm.get('twelveForm.startDate')?.touched">
+                <div class="col-6"></div>
+                <div *ngIf="educationForm.get('twelveForm.startDate')?.errors?.['required']"
+                    class="col-6 validationError">Start Date is required</div>
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
+                        class="ms-3">:</span></label>
+                <input type="date" class="col-6" formControlName="endDate" [attr.max]="today"
+                    (ngModelChange)="endDateChanges('twelveForm')">
+            </div>
+
+            <!--Validation Error message for End date -->
+            <div class="row" *ngIf="educationForm.get('twelveForm.endDate')?.errors?.['required']">
+                <div class="col-6"></div>
+                <div class="col-6 validationError">End date is required</div>
+            </div>
+            <div class="row" *ngIf="twelveFormEndDateError">
+                <div class="col-6"></div>
+                <div class="col-6 validationError">End date must be greater than or equal to start date</div>
+            </div>
+
+
+            <div class="row mt-2">
+                <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="marks">
+            </div>
+        </div>
+
+        <!-- Tenth Form -->
+        <div formGroupName="tenthForm" class="mt-5">
+            <div class="fw-bold fs-5">10th Details</div>
+            <div class="row">
+                <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
+                    <span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="instituteName" />
+            </div>
+            <!--Validation Error message for Institution Name -->
+            <div class="row" *ngIf="educationForm.get('tenthForm.instituteName')?.touched">
+                <div class="col-6"></div>
+                <div *ngIf="educationForm.get('tenthForm.instituteName')?.errors?.['pattern']"
+                    class="col-6 validationError">Only alphabets are allowed</div>
+                <div *ngIf="educationForm.get('tenthForm.instituteName')?.errors?.['required']"
+                    class="col-6 validationError">Institution Name is required</div>
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
+                        class="ms-3">:</span></label>
+                <input type="date" class="col-6" formControlName="startDate" [attr.max]="today"
+                    (ngModelChange)="startDateChanges('tenthForm')">
+            </div>
+
+            <!--Validation Error message for Start Date -->
+            <div class="row" *ngIf="educationForm.get('tenthForm.startDate')?.touched">
+                <div class="col-6"></div>
+                <div *ngIf="educationForm.get('tenthForm.startDate')?.errors?.['required']"
+                    class="col-6 validationError">Start Date is required</div>
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
+                        class="ms-3">:</span></label>
+                <input type="date" class="col-6" formControlName="endDate" [attr.max]="today"
+                    (ngModelChange)="endDateChanges('tenthForm')">
+            </div>
+
+            <!--Validation Error message for End date -->
+            <div class="row" *ngIf="educationForm.get('tenthForm.endDate')?.errors?.['required']">
+                <div class="col-6"></div>
+                <div class="col-6 validationError">End date is required</div>
+            </div>
+
+            <div class="row" *ngIf="tenthFormEndDateError">
+                <div class="col-6"></div>
+                <div class="col-6 validationError">End date must be greater than or equal to start date</div>
+            </div>
+
+
+            <div class="row mt-2">
+                <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="marks">
+            </div>
+        </div>
+    </form>
+
+    <!-- Button -->
+    <div class="mt-5 d-flex justify-content-end w-100">
+        <!-- <button class="button btn-previous" (click)=previous()
+            [title]="educationForm.valid ? 'Previous' : 'Invalid Form'">Previous</button> -->
+
+        <button class="button btn-next" (click)=submitAndNext() [disabled]="!educationForm.valid" 
+            [title]="educationForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+    </div>
+</div>

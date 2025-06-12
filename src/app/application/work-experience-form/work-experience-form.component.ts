@@ -1,0 +1,48 @@
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FormDataService } from 'src/app/services/form-data.service';
+
+@Component({
+  selector: 'app-work-experience-form',
+  templateUrl: './work-experience-form.component.html',
+  styleUrls: ['./work-experience-form.component.scss']
+})
+export class WorkExperienceFormComponent {
+  numberOfExperience: any = [];
+
+  workExperienceForm = new FormGroup({});
+  @Output() nextButonClicked = new EventEmitter();
+  @Output() previousClicked = new EventEmitter();
+
+  constructor(public formDataService: FormDataService) { }
+
+  addExperienceHandle() {
+    let newNumberToAdd = 0;
+
+    if (this.numberOfExperience.length == 0) {
+      newNumberToAdd = 1;
+    } else {
+      newNumberToAdd = this.numberOfExperience.length + 1;
+    }
+    this.numberOfExperience.push(newNumberToAdd);
+
+    const experienceGroup = new FormGroup({
+      companyName: new FormControl(''),
+      designation: new FormControl(''),
+      duration: new FormControl('')
+    })
+
+    this.workExperienceForm.addControl('workExperience' + newNumberToAdd, experienceGroup);
+  }
+
+  previous() {
+    this.previousClicked.emit();
+  }
+
+  submitAndNext() {
+    console.log(this.workExperienceForm);
+    this.formDataService.workExperienceFormData = this.workExperienceForm.value;
+    this.nextButonClicked.emit();
+
+  }
+}

@@ -1,0 +1,108 @@
+<div class="container ">
+    <div class="text-center fw-bold fs-5 mb-3">Review and Download Your Resume</div>
+
+    <div class="d-flex justify-content-center">
+        <div class="w-65">
+            <div class="download-container p-4 w-100" #downloadSection>
+                <!-- Personal Details -->
+                <div class="personalInfo-container d-flex justify-content-between w-100 pb-2">
+                    <div>
+                        <div class="fs-25 fw-bold">{{formDataService.personalInfoFormData?.name}}</div>
+                        <div class="fs-14">{{formDataService.personalInfoFormData?.email}}</div>
+                        <div class="fs-14">{{formDataService.personalInfoFormData?.mobile}}</div>
+                        <div class="fs-14">{{formDataService.personalInfoFormData?.linkedURL}}</div>
+                        <div class="fs-14">{{formDataService.personalInfoFormData?.gitHubURL}}</div>
+                    </div>
+
+                    <div *ngIf="formDataService.personalInfoFormData?.imageURL">
+                        <img [src]="formDataService.personalInfoFormData?.imageURL" class="imagePreview" />
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="details-heading">Summary</div>
+
+                <div>{{formDataService.summaryFormData?.summary}}</div>
+
+                <!-- Skills -->
+                <div class="details-heading">Skills</div>
+
+                <div class="row m-0">
+                    <div *ngFor="let skill of skillSet1; let i=index;" class="col-4">{{i+1}}. {{skill}}</div>
+                    <div *ngFor="let skill of skillSet2; let i=index;" class="col-4">{{i+5}}. {{skill}}</div>
+                    <div *ngFor="let skill of skillSet3; let i=index;" class="col-4">{{i+10}}. {{skill}}</div>
+                </div>
+
+                <!-- Work Experience -->
+                <div *ngIf="workExpKeys.length" class="details-heading">Work Experience</div>
+
+                <div *ngFor="let workExp of workExpKeys; let i=index;" class="mt-2">
+                    <div *ngIf="i<=2" class="ms-1" [ngClass]="{'mt-3': i > 0}">
+                        <div class="fs-16 fw-bold">{{formDataService.workExperienceFormData[workExp].companyName}}</div>
+
+                        <div class="fs-12 d-flex">
+                            <div class="fw-bold">Designation :</div>
+                            <div class='ms-2'>{{formDataService.workExperienceFormData[workExp]?.designation}}</div>
+                        </div>
+
+                        <div class="fs-12 d-flex">
+                            <div class="fw-bold">Duration : </div>
+                            <div class='ms-2'>{{formDataService.workExperienceFormData[workExp]?.duration}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div *ngIf="projectsKeys.length" class="details-heading">Projects</div>
+
+                <div *ngFor="let project of projectsKeys; let i=index;" class="mt-2">
+                    <div *ngIf="i<=2" class="ms-1" [ngClass]="{'mt-3': i > 0}">
+                        <div class="fs-16 fw-bold">{{formDataService.projectFormData[project].projectName}}</div>
+
+                        <div class="fs-14 d-flex mt-2">
+                            <div class='description-container w-100'>
+                                {{formDataService.projectFormData[project]?.projectDescription}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div *ngIf="educationKeys.length" class="details-heading">Education</div>
+
+                <div *ngFor="let education of educationKeys; let i=index;" class="mt-2">
+                    <div class="fs-16 fw-bold degree">{{ education == 'graduationForm' ? 'Graduation'
+                        : education == 'twelveForm' ? 'Intermediate' :
+                        education == 'tenthForm' ? 'Matriculate' : ''}}
+                    </div>
+
+                    <div class="ms-1">
+                        <div class="d-flex">
+                            <div class="fs-14 fw-bold">Institute Name :</div>
+                            <div class="fs-14 ms-2">{{formDataService.educationFormData[education].instituteName}}</div>
+                        </div>
+
+                        <div class="fs-14 d-flex mt-2">
+                            <div class="d-flex">
+                                <div class="fs-14 fw-bold">Year :</div>
+                                <div class="fs-14 ms-2">{{formDataService.educationFormData[education]?.startDate}} -
+                                    {{formDataService.educationFormData[education]?.endDate}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex mt-2">
+                            <div class="fs-14 fw-bold">Marks :</div>
+                            <div class="fs-14 ms-2">{{formDataService.educationFormData[education].marks}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button -->
+<div class="mt-5 d-flex justify-content-center w-100">
+    <button class="button btn-next" (click)=download()>Download (PDF)</button>
+</div>

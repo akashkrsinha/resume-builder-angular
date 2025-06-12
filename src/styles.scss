@@ -1,3 +1,8 @@
+$primary: #23c6b1;
+$secondary: rgb(255, 108, 108);
+$primary-btn: rgb(146, 0, 175);
+
+
 html,
 body {
     height: 100%;
@@ -7,12 +12,8 @@ body {
     margin: 0;
 }
 
-$primary: #23c6b1;
-$secondary: rgb(255, 108, 108);
-$primary-btn: rgb(146, 0, 175);
-
-.left-bg{
-    background-image: url('../../../assets/images/left-background.jpg');
+.left-bg {
+    background-image: url('./assets/images/left-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,6 +21,66 @@ $primary-btn: rgb(146, 0, 175);
 
 .right-bg {
     background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    width: 100%;
+}
+
+
+.button {
+    outline: none;
+    border: none;
+    padding: 6px 15px 6px 15px;
+    color: white;
+    border-radius: 5px;
+}
+
+input,
+textarea {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-weight: 500;
+    position: relative;
+}
+
+.required-mark {
+    position: absolute;
+    top: 12px;
+    font-size: 8px !important;
+    color: red;
+}
+
+.btn-next {
+    background-color: green;
+}
+
+.button.btn-next:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-next:hover {
+    background-color: rgb(17, 195, 17);
+}
+
+.btn-add {
+    background-color: #4facfe;
+}
+
+.btn-previous {
+    background-color: red;
+}
+
+.btn-previous:hover {
+    background-color: rgb(223, 3, 3);
+}
+
+.required-mark {
+    font-size: 5px;
+
 }
 
 .br-6 {
@@ -28,6 +89,14 @@ $primary-btn: rgb(146, 0, 175);
 
 .fs-25 {
     font-size: 25px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-14{
+    font-size: 14px;
 }
 
 .fs-12 {
@@ -105,8 +174,8 @@ $primary-btn: rgb(146, 0, 175);
     background-color: rgb(252, 31, 31);
 }
 
-.invalid-button{
-    cursor:not-allowed;
+.invalid-button {
+    cursor: not-allowed;
     opacity: .5;
 }
 
@@ -127,30 +196,54 @@ $primary-btn: rgb(146, 0, 175);
     cursor: pointer;
 }
 
-.width-left{
+.width-left {
     width: 45%;
 }
 
-.width-right{
+.width-right {
     width: 55%;
 }
 
-@media (min-width: 576px){
-    .width-left{
+@media (min-width: 576px) {
+    .width-left {
         width: 40%;
     }
 
-    .width-right{
+    .width-right {
         width: 60%;
     }
 }
 
-@media (min-width: 768px){
-    .width-left{
+@media (min-width: 768px) {
+    .width-left {
         width: 30%;
     }
 
-    .width-right{
+    .width-right {
         width: 70%;
     }
+
+    .right-bg {
+        width: 50%;
+    }
+}
+
+.tborder {
+    border: 2px solid red;
+}
+
+.error-text {
+    color: red;
+    margin-left: 50%;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+// For removing arrow from number input type
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }

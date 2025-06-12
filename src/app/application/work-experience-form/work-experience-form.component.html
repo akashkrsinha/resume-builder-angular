@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="text-center fw-bold fs-5 mb-3">Work Experience (Optional)</div>
+
+
+    <form [formGroup]="workExperienceForm">
+        <div *ngFor="let experienceNumber of numberOfExperience; let idx=index;"
+            [formGroupName]="'workExperience' + experienceNumber">
+            <div class="fw-bold text-center" [ngClass]="{'mt-3' : idx != 0}">Work Experience {{experienceNumber}}</div>
+
+            <div class="row mt-3">
+                <label class="col-6">Company Name<span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="companyName" />
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">Designation<span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="designation" />
+            </div>
+
+            <div class="row mt-2">
+                <label class="col-6">Enter Duration (Years and months)<span class="ms-3">:</span></label>
+                <input type="text" class="col-6" formControlName="duration" />
+            </div>
+        </div>
+    </form>
+
+    <button (click)="addExperienceHandle()" class="d-flex align-items-center button btn-add mt-3">Add Experience <i
+            class="fa fa-plus ms-2" aria-hidden="true"></i></button>
+
+
+    <!-- Previous and Next Buttons -->
+    <div class="mt-5 d-flex justify-content-end w-100">
+        <!-- <button class="button btn-previous" (click)=previous()
+            [title]="workExperienceForm.valid ? 'Previous' : 'Invalid Form'">Previous</button> -->
+
+        <button class="button btn-next" (click)=submitAndNext()
+            [title]="workExperienceForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+    </div>
+</div>

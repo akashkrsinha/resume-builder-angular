@@ -1,0 +1,26 @@
+.download-container {
+    border: 1px solid black;
+    width: 65%;
+}
+
+.imagePreview {
+    max-width: 150px;
+}
+
+.details-heading {
+    background-color: #23c6b1;
+    color: white;
+    margin-top: 12px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.description-container {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.degree{
+    text-decoration: underline;
+}

@@ -25,8 +25,6 @@ export class LoginComponent {
   }
 
   submitClicked() {
-    console.log(this.loginForm);
-
     const isEmailExist = this.signupService.signupCredentials.some((loginData: any) => loginData.email == this.loginForm.value.email);
 
     if (isEmailExist) {
@@ -39,7 +37,7 @@ export class LoginComponent {
               icon: 'success',
               timer: 1000
             });
-            this.router.navigateByUrl('app');
+            this.router.navigateByUrl('resume');
           }else{
             Swal.fire('Error', 'Invalid login credentials', 'error');
           }
@@ -55,7 +53,7 @@ export class LoginComponent {
   }
 
   loginGuest() {
-    this.router.navigateByUrl('app');
+    this.router.navigateByUrl('resume');
   }
 
 }

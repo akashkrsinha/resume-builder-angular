@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="text-center fw-bold fs-5 mb-3">Profile Summary</div>
+
+    <form [formGroup]="summaryForm">
+        <div class="fw-bold">Please mention your brief summary</div>
+        <textarea formControlName="summary" rows="5" class="col-12 mt-2"></textarea>
+
+        <div class="validationError fw-bold"
+            *ngIf="summaryForm.get('summary')?.touched && summaryForm.get('summary')?.errors?.['required']">Summary is
+            required</div>
+    </form>
+
+    <!-- Previous and Next Buttons -->
+    <div class="mt-5 d-flex justify-content-end w-100">
+        <!-- <button class="button btn-previous" (click)=previous()
+            [title]="summaryForm.valid ? 'Previous' : 'Invalid Form'">Previous</button> -->
+
+        <button class="button btn-next" (click)=submitAndNext() [disabled]="!summaryForm.valid"
+            [title]="summaryForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+    </div>
+</div>
