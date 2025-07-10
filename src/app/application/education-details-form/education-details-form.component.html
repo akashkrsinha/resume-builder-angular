@@ -8,7 +8,7 @@
             <div class="row">
                 <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
                     <span class="ms-3">:</span></label>
-                <input type="text" class="col-6" formControlName="instituteName" />
+                <input type="text" class="col-6" formControlName="instituteName" placeholder="Institution Name" />
             </div>
 
             <!--Validation Error message for Institution Name -->
@@ -55,7 +55,7 @@
 
             <div class="row mt-2">
                 <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
-                <input type="text" class="col-6" formControlName="marks">
+                <input type="text" class="col-6" formControlName="marks" placeholder="Grade / GPA" />
             </div>
         </div>
 
@@ -65,7 +65,7 @@
             <div class="row">
                 <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
                     <span class="ms-3">:</span></label>
-                <input type="text" class="col-6" formControlName="instituteName" />
+                <input type="text" class="col-6" formControlName="instituteName" placeholder="Institution Name" />
             </div>
             <!--Validation Error message for Institution Name -->
             <div class="row" *ngIf="educationForm.get('twelveForm.instituteName')?.touched">
@@ -110,7 +110,7 @@
 
             <div class="row mt-2">
                 <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
-                <input type="text" class="col-6" formControlName="marks">
+                <input type="text" class="col-6" formControlName="marks" placeholder="Grade / GPA" />
             </div>
         </div>
 
@@ -120,7 +120,7 @@
             <div class="row">
                 <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
                     <span class="ms-3">:</span></label>
-                <input type="text" class="col-6" formControlName="instituteName" />
+                <input type="text" class="col-6" formControlName="instituteName" placeholder="Institution Name" />
             </div>
             <!--Validation Error message for Institution Name -->
             <div class="row" *ngIf="educationForm.get('tenthForm.instituteName')?.touched">
@@ -166,17 +166,16 @@
 
             <div class="row mt-2">
                 <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
-                <input type="text" class="col-6" formControlName="marks">
+                <input type="text" class="col-6" formControlName="marks" placeholder="Grade / GPA" />
             </div>
         </div>
     </form>
 
     <!-- Button -->
-    <div class="mt-5 d-flex justify-content-end w-100">
-        <!-- <button class="button btn-previous" (click)=previous()
-            [title]="educationForm.valid ? 'Previous' : 'Invalid Form'">Previous</button> -->
+    <div class="mt-5 d-flex justify-content-between w-100">
+        <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
 
-        <button class="button btn-next" (click)=submitAndNext() [disabled]="!educationForm.valid" 
+        <button class="button btn-next" (click)=submitAndNext() [disabled]="!educationForm.valid"
             [title]="educationForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
     </div>
 </div>

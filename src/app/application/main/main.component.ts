@@ -15,7 +15,6 @@ export class MainComponent {
     { label: 'Projects' },
     { label: 'Summary' },
     { label: 'Review' },
-    // { label: 'Certifications' },
   ];
 
   activeIndex = 0;

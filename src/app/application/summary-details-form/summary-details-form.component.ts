@@ -18,7 +18,7 @@ export class SummaryDetailsFormComponent {
   constructor(public formDataService: FormDataService) { }
 
   previous() {
-
+    this.previousClicked.emit();
   }
 
   submitAndNext() {
@@ -30,7 +30,6 @@ export class SummaryDetailsFormComponent {
 
     this.formDataService.summaryFormData = this.summaryForm.value;
 
-    console.log(this.summaryForm);
     this.nextButonClicked.emit();
   }
 }

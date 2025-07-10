@@ -9,12 +9,12 @@ import { EducationDetailsFormComponent } from './education-details-form/educatio
 import { WorkExperienceFormComponent } from './work-experience-form/work-experience-form.component';
 import { SkillDetailsFormComponent } from './skill-details-form/skill-details-form.component';
 import { ProjectDetailsFormComponent } from './project-details-form/project-details-form.component';
-import { CertificationDetailsFormComponent } from './certification-details-form/certification-details-form.component';
 import { AchievementFormComponent } from './achievement-form/achievement-form.component';
 import { SummaryDetailsFormComponent } from './summary-details-form/summary-details-form.component';
 import { ResumeReviewComponent } from './resume-review/resume-review.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +24,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     WorkExperienceFormComponent,
     SkillDetailsFormComponent,
     ProjectDetailsFormComponent,
-    CertificationDetailsFormComponent,
     AchievementFormComponent,
     SummaryDetailsFormComponent,
     ResumeReviewComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

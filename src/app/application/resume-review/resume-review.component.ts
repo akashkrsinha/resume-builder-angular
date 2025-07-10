@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormDataService } from 'src/app/services/form-data.service';
 // @ts-ignore
 import * as html2pdf from 'html2pdf.js';
@@ -17,13 +17,13 @@ export class ResumeReviewComponent {
   projectsKeys: any = [];
   educationKeys: any = [];
   @ViewChild('downloadSection') downloadSection!: ElementRef;
+  @Output() previousClicked = new EventEmitter();
 
   constructor(public formDataService: FormDataService) {
     this.initialiseData();
   }
 
   initialiseData() {
-    console.log(this.formDataService);
     this.skills = this.formDataService?.skillFormData?.skills?.split(',');
 
     this.skills?.map((skill: any, index: number) => {
@@ -54,7 +54,10 @@ export class ResumeReviewComponent {
     };
 
     html2pdf().set(opt).from(element).save();
+  }
 
+  previous() {
+    this.previousClicked.emit();
   }
 
 }

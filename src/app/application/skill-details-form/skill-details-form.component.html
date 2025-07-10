@@ -4,7 +4,8 @@
 
     <form [formGroup]="skillsForm">
         <div class="fw-bold">Please mention your skills (Use comma to break the line)</div>
-        <textarea formControlName="skills" rows="5" class="col-12 mt-2"></textarea>
+        <textarea formControlName="skills" rows="5" class="col-12 mt-2"
+            placeholder="Please mention your skills"></textarea>
 
         <div class="validationError fw-bold"
             *ngIf="skillsForm.get('skills')?.touched && skillsForm.get('skills')?.errors?.['required']">Skills is
@@ -12,11 +13,10 @@
     </form>
 
     <!-- Previous and Next Buttons -->
-    <div class="mt-5 d-flex justify-content-end w-100">
-        <!-- <button class="button btn-previous" (click)=previous()
-            [title]="skillsForm.valid ? 'Previous' : 'Invalid Form'">Previous</button> -->
+    <div class="mt-5 d-flex justify-content-between w-100">
+        <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
 
-        <button class="button btn-next" (click)=submitAndNext() [disabled]="!skillsForm.valid" 
+        <button class="button btn-next" (click)=submitAndNext() [disabled]="!skillsForm.valid"
             [title]="skillsForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
     </div>
 </div>

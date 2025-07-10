@@ -14,9 +14,24 @@ export class WorkExperienceFormComponent {
   @Output() nextButonClicked = new EventEmitter();
   @Output() previousClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService) { }
+  constructor(public formDataService: FormDataService) {
+    let keys = Object.keys(this.formDataService.workExperienceFormData);
 
-  addExperienceHandle() {
+    if (keys?.length) {
+      keys.map((subFormName: any, index: number) => {
+        this.numberOfExperience.push(index + 1);
+        this.createDynamicForm();
+        this.workExperienceForm.get(subFormName)?.patchValue({
+          companyName: this.formDataService.workExperienceFormData?.[subFormName]['companyName'],
+          designation: this.formDataService.workExperienceFormData?.[subFormName]['designation'],
+          duration: this.formDataService.workExperienceFormData?.[subFormName]['duration']
+        });
+      });
+    }
+
+  }
+
+  createDynamicForm() {
     let newNumberToAdd = 0;
 
     if (this.numberOfExperience.length == 0) {
@@ -40,9 +55,8 @@ export class WorkExperienceFormComponent {
   }
 
   submitAndNext() {
-    console.log(this.workExperienceForm);
     this.formDataService.workExperienceFormData = this.workExperienceForm.value;
-    this.nextButonClicked.emit();
 
+    this.nextButonClicked.emit();
   }
 }

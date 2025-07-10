@@ -39,7 +39,21 @@ export class EducationDetailsFormComponent {
     }),
   });
 
-  constructor(public formDataService: FormDataService) { }
+  constructor(public formDataService: FormDataService) { 
+    //  let keys = Object.keys(this.formDataService?.educationFormData);
+    
+    // if(keys.length){
+    //   this.educationForm.patchValue({
+    //     instituteName: this.formDataService?.educationFormData?.name,
+    //     email: this.formDataService?.educationFormData?.email,
+    //     mobile: this.formDataService?.educationFormData?.mobile,
+    //     address: this.formDataService?.educationFormData?.address,
+    //     linkedURL: this.formDataService?.educationFormData?.linkedURL,
+    //     gitHubURL: this.formDataService?.educationFormData?.gitHubURL,
+    //   });
+      
+    // }
+  }
 
   startDateChanges(formGroupName: string) {
     if (this.educationForm.get(`${formGroupName}.startDate`)?.value) {

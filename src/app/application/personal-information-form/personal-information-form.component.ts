@@ -20,7 +20,23 @@ export class PersonalInformationFormComponent {
 
   @Output() nextButonClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService){}
+  constructor(public formDataService: FormDataService){
+    //Checking if form data already exist
+    let keys = Object.keys(this.formDataService?.personalInfoFormData);
+    
+    if(keys.length){
+      this.personalInfoForm.patchValue({
+        name: this.formDataService?.personalInfoFormData?.name,
+        email: this.formDataService?.personalInfoFormData?.email,
+        mobile: this.formDataService?.personalInfoFormData?.mobile,
+        address: this.formDataService?.personalInfoFormData?.address,
+        linkedURL: this.formDataService?.personalInfoFormData?.linkedURL,
+        gitHubURL: this.formDataService?.personalInfoFormData?.gitHubURL,
+      });
+      
+      this.uploadedImageURL = this.formDataService?.personalInfoFormData?.imageURL;
+    }
+  }
 
   uploadImage(event: any) {    
     let uploadedImage = event.target.files[0];

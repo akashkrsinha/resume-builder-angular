@@ -17,7 +17,7 @@ export class SkillDetailsFormComponent {
   constructor(public formDataService: FormDataService) { }
 
   previous() {
-
+    this.previousClicked.emit();
   }
 
   submitAndNext() {

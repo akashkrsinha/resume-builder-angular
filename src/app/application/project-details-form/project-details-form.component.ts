@@ -35,7 +35,7 @@ export class ProjectDetailsFormComponent {
   }
 
   previous() {
-
+    this.previousClicked.emit();
   }
 
   submitAndNext() {
