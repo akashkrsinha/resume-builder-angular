@@ -15,12 +15,12 @@ export class WorkExperienceFormComponent {
   @Output() previousClicked = new EventEmitter();
 
   constructor(public formDataService: FormDataService) {
-    let keys = Object.keys(this.formDataService.workExperienceFormData);
+    let keys = Object.keys(this.formDataService?.workExperienceFormData);
 
     if (keys?.length) {
-      keys.map((subFormName: any, index: number) => {
-        this.numberOfExperience.push(index + 1);
+      keys.map((subFormName: any) => {
         this.createDynamicForm();
+        
         this.workExperienceForm.get(subFormName)?.patchValue({
           companyName: this.formDataService.workExperienceFormData?.[subFormName]['companyName'],
           designation: this.formDataService.workExperienceFormData?.[subFormName]['designation'],

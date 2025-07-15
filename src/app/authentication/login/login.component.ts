@@ -37,6 +37,8 @@ export class LoginComponent {
               icon: 'success',
               timer: 1000
             });
+
+            sessionStorage.setItem('isUserLoggedin', 'true'),
             this.router.navigateByUrl('resume');
           }else{
             Swal.fire('Error', 'Invalid login credentials', 'error');

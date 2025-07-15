@@ -14,9 +14,22 @@ export class ProjectDetailsFormComponent {
 
   projectForm = new FormGroup({});
 
-  constructor(public formDataService: FormDataService) { }
+  constructor(public formDataService: FormDataService) { 
+    let keys = Object.keys(this.formDataService?.projectFormData);
 
-  addProjectHandle() {
+    if (keys?.length) {
+      keys.map((subFormName: any) => {
+        this.createDynamicForm();
+        
+        this.projectForm.get(subFormName)?.patchValue({
+          projectName: this.formDataService.projectFormData?.[subFormName]['projectName'],
+          projectDescription: this.formDataService.projectFormData?.[subFormName]['projectDescription'],
+        });
+      });
+    }
+  }
+
+  createDynamicForm() {
     let newNumberToAdd = 0;
 
     if (this.numberOfProjects.length == 0) {

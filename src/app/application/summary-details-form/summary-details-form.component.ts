@@ -15,7 +15,15 @@ export class SummaryDetailsFormComponent {
     summary: new FormControl('', [Validators.required])
   });
 
-  constructor(public formDataService: FormDataService) { }
+  constructor(public formDataService: FormDataService) {
+     let keys = Object.keys(this.formDataService?.summaryFormData);
+
+    if(keys?.length){
+      this.summaryForm.patchValue({
+        summary: this.formDataService?.summaryFormData?.summary
+      });
+    }
+   }
 
   previous() {
     this.previousClicked.emit();

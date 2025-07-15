@@ -24,7 +24,7 @@ export class PersonalInformationFormComponent {
     //Checking if form data already exist
     let keys = Object.keys(this.formDataService?.personalInfoFormData);
     
-    if(keys.length){
+    if(keys?.length){
       this.personalInfoForm.patchValue({
         name: this.formDataService?.personalInfoFormData?.name,
         email: this.formDataService?.personalInfoFormData?.email,
@@ -45,7 +45,11 @@ export class PersonalInformationFormComponent {
   }
 
   submitAndNext(){
-    this.personalInfoForm.markAllAsTouched();    
+    this.personalInfoForm.markAllAsTouched(); 
+    
+    if(this.personalInfoForm.invalid){
+      return;
+    }
 
     this.formDataService.personalInfoFormData = { ...this.personalInfoForm.value, imageURL: this.uploadedImageURL };
 

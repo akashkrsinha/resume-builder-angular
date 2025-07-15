@@ -2,7 +2,7 @@
     <div class="text-center fw-bold fs-5 mb-3">Work Experience (Optional)</div>
 
 
-    <form [formGroup]="workExperienceForm">
+    <form *ngIf="numberOfExperience?.length" [formGroup]="workExperienceForm">
         <div *ngFor="let experienceNumber of numberOfExperience; let idx=index;"
             [formGroupName]="'workExperience' + experienceNumber">
             <div class="fw-bold text-center" [ngClass]="{'mt-3' : idx != 0}">Work Experience {{experienceNumber}}</div>

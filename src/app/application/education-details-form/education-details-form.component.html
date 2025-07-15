@@ -175,7 +175,7 @@
     <div class="mt-5 d-flex justify-content-between w-100">
         <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
 
-        <button class="button btn-next" (click)=submitAndNext() [disabled]="!educationForm.valid"
+        <button class="button btn-next" (click)=submitAndNext()
             [title]="educationForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
     </div>
 </div>

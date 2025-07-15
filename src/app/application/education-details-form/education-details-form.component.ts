@@ -39,20 +39,20 @@ export class EducationDetailsFormComponent {
     }),
   });
 
-  constructor(public formDataService: FormDataService) { 
-    //  let keys = Object.keys(this.formDataService?.educationFormData);
-    
-    // if(keys.length){
-    //   this.educationForm.patchValue({
-    //     instituteName: this.formDataService?.educationFormData?.name,
-    //     email: this.formDataService?.educationFormData?.email,
-    //     mobile: this.formDataService?.educationFormData?.mobile,
-    //     address: this.formDataService?.educationFormData?.address,
-    //     linkedURL: this.formDataService?.educationFormData?.linkedURL,
-    //     gitHubURL: this.formDataService?.educationFormData?.gitHubURL,
-    //   });
-      
-    // }
+  constructor(public formDataService: FormDataService) {
+    let keys = Object.keys(this.formDataService?.educationFormData);
+    console.log(keys, this.formDataService.educationFormData);
+
+    if (keys.length) {
+      keys.map((subFormName: string) => {
+        this.educationForm.get(subFormName)?.patchValue({
+          instituteName: this.formDataService?.educationFormData?.[subFormName]?.instituteName,
+          startDate: this.formDataService?.educationFormData?.[subFormName]?.startDate,
+          endDate: this.formDataService?.educationFormData?.[subFormName]?.endDate,
+          marks: this.formDataService?.educationFormData?.[subFormName]?.marks  ,
+        });
+      });
+    }
   }
 
   startDateChanges(formGroupName: string) {
@@ -60,7 +60,7 @@ export class EducationDetailsFormComponent {
       this.educationForm.get(`${formGroupName}.endDate`)?.enable();
       this.educationForm.get(`${formGroupName}.endDate`)?.setValidators([Validators.required]);
       this.educationForm.get(`${formGroupName}.endDate`)?.updateValueAndValidity();
-    }    
+    }
   }
 
   endDateChanges(formGroupName: string) {
@@ -88,12 +88,17 @@ export class EducationDetailsFormComponent {
     }
   }
 
-  previous(){
+  previous() {
     this.previousClicked.emit();
   }
 
   submitAndNext() {
     this.educationForm.markAllAsTouched();
+
+    if(this.educationForm.invalid){
+      return;
+    }
+    
     this.formDataService.educationFormData = this.educationForm.value;
     this.nextButonClicked.emit();
   }

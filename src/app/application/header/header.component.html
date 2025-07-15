@@ -1,1 +1,7 @@
-<p>header works!</p>
+<div class="container-fluid outer mb-3 d-flex align-items-center justify-content-between px-6">
+    <div class="fs-3">Resume Builder</div>
+    <div *ngIf="isUserLoggedIn == false" class="d-flex">
+        <div (click)="loginClicked()" class="me-3 pointer">Login</div>
+        <div (click)="signupClicked()" class="pointer">Signup</div>
+    </div>
+</div>

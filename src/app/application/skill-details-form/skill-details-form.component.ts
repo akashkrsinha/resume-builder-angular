@@ -14,7 +14,15 @@ export class SkillDetailsFormComponent {
   @Output() nextButonClicked = new EventEmitter();
   @Output() previousClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService) { }
+  constructor(public formDataService: FormDataService) { 
+    let keys = Object.keys(this.formDataService?.skillFormData);
+
+    if(keys?.length){
+      this.skillsForm.patchValue({
+        skills: this.formDataService?.skillFormData?.skills
+      });
+    }
+  }
 
   previous() {
     this.previousClicked.emit();

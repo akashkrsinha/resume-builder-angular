@@ -1,8 +1,10 @@
-<div class="container-fluid main-container p-4 h-auto">
-  <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"
+<div class="main-container h-auto">
+  <app-header></app-header>
+
+  <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="true"
     (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
 
-  <div class="mt-6 h-auto">
+  <div class="h-auto p-4">
     <div class="d-flex justify-content-center align-items-center">
       <ng-container [ngSwitch]="activeIndex">
         <div [ngClass]="{'form-container': activeIndex != 6, 'w-100': activeIndex == 6 }">
