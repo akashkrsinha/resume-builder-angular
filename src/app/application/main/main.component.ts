@@ -34,9 +34,11 @@ export class MainComponent {
 
   nextButonClicked(){
     this.activeIndex++;
+    sessionStorage.setItem('selectedIndex', (this.activeIndex).toString());
   }
 
   previousClicked(){
     this.activeIndex--;
+    sessionStorage.setItem('selectedIndex', (this.activeIndex).toString());
   }
 }
