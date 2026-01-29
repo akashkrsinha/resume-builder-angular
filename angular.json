@@ -20,7 +20,7 @@
             "outputPath": "dist/resume_builder_angular",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "baseHref": "/resume_builder_angular/",
+            "baseHref": "/resume-builder-angular/",
             "polyfills": [
               "zone.js"
             ],
