@@ -20,7 +20,6 @@
             "outputPath": "dist/resume_builder_angular",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "baseHref": "/resume-builder-angular/",
             "polyfills": [
               "zone.js"
             ],
@@ -55,7 +54,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/resume-builder-angular/"
             },
             "development": {
               "buildOptimizer": false,

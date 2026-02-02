@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
   items = [
     { label: 'Personal Information' },
     { label: 'Education' },
@@ -16,13 +16,24 @@ export class MainComponent {
     { label: 'Summary' },
     { label: 'Review' },
   ];
+  requiredFormName: string[] = [];
+
 
   activeIndex = 0;
 
-  constructor(public router: Router){
+  constructor(public router: Router) {
+    this.requiredFormName = ['Personal Information Form', 'Education Form', 'Skills Form', 'Summary Form'];
+
+    //needed to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default.
+    this.requiredFormName.forEach((formName: any) => {
+      sessionStorage.setItem(formName, 'invalid');
+    })
+  }
+
+  ngOnInit() {
     // Code to retain the selected index from progress bar if page is refresh.
     let alreadySelectedIndex = sessionStorage.getItem('selectedIndex');
-    if(alreadySelectedIndex){
+    if (alreadySelectedIndex) {
       this.activeIndex = +alreadySelectedIndex;
     }
   }
@@ -32,12 +43,12 @@ export class MainComponent {
     sessionStorage.setItem('selectedIndex', stepIndex.toString());
   }
 
-  nextButonClicked(){
+  nextButonClicked() {
     this.activeIndex++;
     sessionStorage.setItem('selectedIndex', (this.activeIndex).toString());
   }
 
-  previousClicked(){
+  previousClicked() {
     this.activeIndex--;
     sessionStorage.setItem('selectedIndex', (this.activeIndex).toString());
   }

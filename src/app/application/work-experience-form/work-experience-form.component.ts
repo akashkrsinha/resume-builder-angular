@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormDataService } from 'src/app/services/form-data.service';
 
@@ -7,20 +7,22 @@ import { FormDataService } from 'src/app/services/form-data.service';
   templateUrl: './work-experience-form.component.html',
   styleUrls: ['./work-experience-form.component.scss']
 })
-export class WorkExperienceFormComponent {
+export class WorkExperienceFormComponent implements OnInit {
   numberOfExperience: any = [];
 
   workExperienceForm = new FormGroup({});
   @Output() nextButonClicked = new EventEmitter();
   @Output() previousClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService) {
+  constructor(public formDataService: FormDataService) {}
+  
+  ngOnInit() {
     let keys = Object.keys(this.formDataService?.workExperienceFormData);
-
+  
     if (keys?.length) {
       keys.map((subFormName: any) => {
         this.createDynamicForm();
-        
+  
         this.workExperienceForm.get(subFormName)?.patchValue({
           companyName: this.formDataService.workExperienceFormData?.[subFormName]['companyName'],
           designation: this.formDataService.workExperienceFormData?.[subFormName]['designation'],
@@ -28,7 +30,10 @@ export class WorkExperienceFormComponent {
         });
       });
     }
-
+    
+    this.workExperienceForm.statusChanges.subscribe((status: any) => {
+      this.formDataService.workExperienceFormData = this.workExperienceForm.value;
+    });
   }
 
   createDynamicForm() {

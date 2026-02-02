@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from 'src/app/services/form-data.service';
 
@@ -7,7 +7,7 @@ import { FormDataService } from 'src/app/services/form-data.service';
   templateUrl: './education-details-form.component.html',
   styleUrls: ['./education-details-form.component.scss']
 })
-export class EducationDetailsFormComponent {
+export class EducationDetailsFormComponent implements OnInit {
   today: any = new Date().toISOString().split('T')[0];
   tenthFormEndDateError: boolean = false;
   twelveFormEndDateError: boolean = false;
@@ -40,20 +40,33 @@ export class EducationDetailsFormComponent {
   });
 
   constructor(public formDataService: FormDataService) {
+  }
+  
+  ngOnInit() {
     let keys = Object.keys(this.formDataService?.educationFormData);
-    console.log(keys, this.formDataService.educationFormData);
-
+  
     if (keys.length) {
       keys.map((subFormName: string) => {
         this.educationForm.get(subFormName)?.patchValue({
           instituteName: this.formDataService?.educationFormData?.[subFormName]?.instituteName,
           startDate: this.formDataService?.educationFormData?.[subFormName]?.startDate,
           endDate: this.formDataService?.educationFormData?.[subFormName]?.endDate,
-          marks: this.formDataService?.educationFormData?.[subFormName]?.marks  ,
+          marks: this.formDataService?.educationFormData?.[subFormName]?.marks,
         });
       });
     }
+    
+    this.educationForm.statusChanges.subscribe((status: any) => {
+      if (status == 'INVALID') {
+        sessionStorage.setItem('Education Form', 'invalid');
+      } else if (status == 'VALID') {
+        sessionStorage.setItem('Education Form', 'valid');
+      }
+
+      this.formDataService.educationFormData = this.educationForm.value;
+    });
   }
+
 
   startDateChanges(formGroupName: string) {
     if (this.educationForm.get(`${formGroupName}.startDate`)?.value) {
@@ -95,10 +108,10 @@ export class EducationDetailsFormComponent {
   submitAndNext() {
     this.educationForm.markAllAsTouched();
 
-    if(this.educationForm.invalid){
+    if (this.educationForm.invalid) {
       return;
     }
-    
+    sessionStorage.setItem('Education Form', 'valid')  //marking form valid on clicking next button.
     this.formDataService.educationFormData = this.educationForm.value;
     this.nextButonClicked.emit();
   }

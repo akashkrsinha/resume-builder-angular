@@ -10,7 +10,7 @@
   <div class="d-flex d-md-none align-items-center justify-content-center fs-25">
     <i (click)="previousClicked()" *ngIf="activeIndex > 0" class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
     <div class="mx-3">{{items[activeIndex].label}}</div>
-    <i (click)="nextButonClicked()" *ngIf="activeIndex < 6" class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    <i (click)="nextButonClicked()" *ngIf="activeIndex < 5" class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
   </div>
 
   <div class="h-auto p-4">
@@ -22,7 +22,7 @@
           <app-work-experience-form *ngSwitchCase="2" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-work-experience-form>
           <app-skill-details-form *ngSwitchCase="3" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-skill-details-form>
           <app-project-details-form *ngSwitchCase="4" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-project-details-form>
-          <app-summary-details-form *ngSwitchCase="5" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()"></app-summary-details-form>
+          <app-summary-details-form *ngSwitchCase="5" (nextButonClicked)="nextButonClicked()" (previousClicked)="previousClicked()" [requiredFormName]="requiredFormName"></app-summary-details-form>
           <app-resume-review *ngSwitchCase="6" (previousClicked)="previousClicked()"></app-resume-review>
         </div>
       </ng-container>

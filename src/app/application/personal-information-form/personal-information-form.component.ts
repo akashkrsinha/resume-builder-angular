@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from 'src/app/services/form-data.service';
 
@@ -7,7 +7,7 @@ import { FormDataService } from 'src/app/services/form-data.service';
   templateUrl: './personal-information-form.component.html',
   styleUrls: ['./personal-information-form.component.scss']
 })
-export class PersonalInformationFormComponent {
+export class PersonalInformationFormComponent implements OnInit {
   uploadedImageURL: any;
   personalInfoForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -20,11 +20,13 @@ export class PersonalInformationFormComponent {
 
   @Output() nextButonClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService){
+  constructor(public formDataService: FormDataService) {}
+  
+  ngOnInit() {
     //Checking if form data already exist
     let keys = Object.keys(this.formDataService?.personalInfoFormData);
-    
-    if(keys?.length){
+  
+    if (keys?.length) {
       this.personalInfoForm.patchValue({
         name: this.formDataService?.personalInfoFormData?.name,
         email: this.formDataService?.personalInfoFormData?.email,
@@ -33,24 +35,35 @@ export class PersonalInformationFormComponent {
         linkedURL: this.formDataService?.personalInfoFormData?.linkedURL,
         gitHubURL: this.formDataService?.personalInfoFormData?.gitHubURL,
       });
-      
+  
       this.uploadedImageURL = this.formDataService?.personalInfoFormData?.imageURL;
     }
+    
+    this.personalInfoForm.statusChanges.subscribe((status: any) => {
+      if (status == 'INVALID') {
+        sessionStorage.setItem('Personal Information Form', 'invalid');
+      } else if (status == 'VALID') {
+        sessionStorage.setItem('Personal Information Form', 'valid');
+      }
+
+      this.formDataService.personalInfoFormData = { ...this.personalInfoForm.value, imageURL: this.uploadedImageURL };
+    });
   }
 
-  uploadImage(event: any) {    
+  uploadImage(event: any) {
     let uploadedImage = event.target.files[0];
     if (uploadedImage)
       this.uploadedImageURL = URL.createObjectURL(uploadedImage);
   }
 
-  submitAndNext(){
-    this.personalInfoForm.markAllAsTouched(); 
-    
-    if(this.personalInfoForm.invalid){
+  submitAndNext() {
+    this.personalInfoForm.markAllAsTouched();
+
+    if (this.personalInfoForm.invalid) {
       return;
     }
 
+    sessionStorage.setItem('Personal Information Form', 'valid')  //marking form valid on clicking next button.
     this.formDataService.personalInfoFormData = { ...this.personalInfoForm.value, imageURL: this.uploadedImageURL };
 
     this.nextButonClicked.emit();
