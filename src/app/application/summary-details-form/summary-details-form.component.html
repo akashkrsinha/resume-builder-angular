@@ -13,7 +13,10 @@
 
     <!-- Error message if previous required forms are invalid -->
     <div *ngIf="errorForms.length" class="validationError fw-bold">
-        Below forms are invalid, please fix these forms before proceeding.
+        <span *ngIf="errorForms.length == 1">Below form is invalid or incomplete, please fix this form before
+            proceeding.</span>
+        <span *ngIf="errorForms.length > 1">Below forms are invalid or incomplete, please fix these forms before
+            proceeding.</span>
         <ul>
             <li *ngFor="let formName of errorForms;">{{formName}}</li>
         </ul>

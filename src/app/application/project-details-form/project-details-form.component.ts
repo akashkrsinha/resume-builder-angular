@@ -58,7 +58,6 @@ export class ProjectDetailsFormComponent implements OnInit {
   }
 
   submitAndNext() {
-    console.log(this.projectForm);
     this.formDataService.projectFormData = this.projectForm.value;
     this.nextButonClicked.emit();
   }

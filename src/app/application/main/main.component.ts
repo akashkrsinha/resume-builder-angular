@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { required_forms_name } from 'src/app/constants/required-forms-name-constant';
 
 @Component({
   selector: 'app-main',
@@ -16,19 +17,10 @@ export class MainComponent implements OnInit {
     { label: 'Summary' },
     { label: 'Review' },
   ];
-  requiredFormName: string[] = [];
-
 
   activeIndex = 0;
 
-  constructor(public router: Router) {
-    this.requiredFormName = ['Personal Information Form', 'Education Form', 'Skills Form', 'Summary Form'];
-
-    //needed to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default.
-    this.requiredFormName.forEach((formName: any) => {
-      sessionStorage.setItem(formName, 'invalid');
-    })
-  }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     // Code to retain the selected index from progress bar if page is refresh.
@@ -39,6 +31,13 @@ export class MainComponent implements OnInit {
   }
 
   onActiveIndexChange(stepIndex: number) {
+    // needed, to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default.
+    if (sessionStorage.getItem(required_forms_name[0]) == null) {
+      required_forms_name.forEach((formName: any) => {
+        sessionStorage.setItem(formName, 'invalid');
+      })
+    }
+
     this.activeIndex = stepIndex;
     sessionStorage.setItem('selectedIndex', stepIndex.toString());
   }

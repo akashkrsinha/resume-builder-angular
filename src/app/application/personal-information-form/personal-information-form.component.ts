@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from 'src/app/services/form-data.service';
+import { required_forms_name } from 'src/app/constants/required-forms-name-constant';
 
 @Component({
   selector: 'app-personal-information-form',
@@ -20,12 +21,12 @@ export class PersonalInformationFormComponent implements OnInit {
 
   @Output() nextButonClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService) {}
-  
+  constructor(public formDataService: FormDataService) { }
+
   ngOnInit() {
     //Checking if form data already exist
     let keys = Object.keys(this.formDataService?.personalInfoFormData);
-  
+
     if (keys?.length) {
       this.personalInfoForm.patchValue({
         name: this.formDataService?.personalInfoFormData?.name,
@@ -35,15 +36,22 @@ export class PersonalInformationFormComponent implements OnInit {
         linkedURL: this.formDataService?.personalInfoFormData?.linkedURL,
         gitHubURL: this.formDataService?.personalInfoFormData?.gitHubURL,
       });
-  
+
       this.uploadedImageURL = this.formDataService?.personalInfoFormData?.imageURL;
     }
-    
+
     this.personalInfoForm.statusChanges.subscribe((status: any) => {
+      // needed, to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default.
+      if (sessionStorage.getItem(required_forms_name[0]) == null) {
+        required_forms_name.forEach((formName: any) => {
+          sessionStorage.setItem(formName, 'invalid');
+        })
+      }
+
       if (status == 'INVALID') {
-        sessionStorage.setItem('Personal Information Form', 'invalid');
+        sessionStorage.setItem(required_forms_name[0], 'invalid');
       } else if (status == 'VALID') {
-        sessionStorage.setItem('Personal Information Form', 'valid');
+        sessionStorage.setItem(required_forms_name[0], 'valid');
       }
 
       this.formDataService.personalInfoFormData = { ...this.personalInfoForm.value, imageURL: this.uploadedImageURL };
@@ -62,8 +70,7 @@ export class PersonalInformationFormComponent implements OnInit {
     if (this.personalInfoForm.invalid) {
       return;
     }
-
-    sessionStorage.setItem('Personal Information Form', 'valid')  //marking form valid on clicking next button.
+    sessionStorage.setItem(required_forms_name[0], 'valid')  //marking form valid on clicking next button.
     this.formDataService.personalInfoFormData = { ...this.personalInfoForm.value, imageURL: this.uploadedImageURL };
 
     this.nextButonClicked.emit();

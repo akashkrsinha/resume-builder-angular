@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
 import { FormDataService } from 'src/app/services/form-data.service';
 // @ts-ignore
 import * as html2pdf from 'html2pdf.js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-resume-review',
@@ -53,7 +54,27 @@ export class ResumeReviewComponent {
       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(element).save();
+    html2pdf().set(opt).from(element).save().then(() => {
+      Swal.fire({
+        toast: true,
+        icon: 'success',
+        text: 'Download successful',
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true
+      });
+    }).catch(() => {
+      Swal.fire({
+        toast: true,
+        icon: 'error',
+        text: 'Download Unsuccessful',
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true
+      });
+    });
   }
 
   previous() {

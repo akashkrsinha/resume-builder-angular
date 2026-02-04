@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from 'src/app/services/form-data.service';
+import { required_forms_name } from 'src/app/constants/required-forms-name-constant';
 
 @Component({
   selector: 'app-education-details-form',
@@ -41,10 +42,10 @@ export class EducationDetailsFormComponent implements OnInit {
 
   constructor(public formDataService: FormDataService) {
   }
-  
+
   ngOnInit() {
     let keys = Object.keys(this.formDataService?.educationFormData);
-  
+
     if (keys.length) {
       keys.map((subFormName: string) => {
         this.educationForm.get(subFormName)?.patchValue({
@@ -55,12 +56,19 @@ export class EducationDetailsFormComponent implements OnInit {
         });
       });
     }
-    
+
     this.educationForm.statusChanges.subscribe((status: any) => {
+      // needed, to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default.
+      if (sessionStorage.getItem(required_forms_name[1]) == null) {
+        required_forms_name.forEach((formName: any) => {
+          sessionStorage.setItem(formName, 'invalid');
+        })
+      }
+
       if (status == 'INVALID') {
-        sessionStorage.setItem('Education Form', 'invalid');
+        sessionStorage.setItem(required_forms_name[1], 'invalid');
       } else if (status == 'VALID') {
-        sessionStorage.setItem('Education Form', 'valid');
+        sessionStorage.setItem(required_forms_name[1], 'valid');
       }
 
       this.formDataService.educationFormData = this.educationForm.value;
@@ -111,7 +119,7 @@ export class EducationDetailsFormComponent implements OnInit {
     if (this.educationForm.invalid) {
       return;
     }
-    sessionStorage.setItem('Education Form', 'valid')  //marking form valid on clicking next button.
+    sessionStorage.setItem(required_forms_name[1], 'valid')  //marking form valid on clicking next button.
     this.formDataService.educationFormData = this.educationForm.value;
     this.nextButonClicked.emit();
   }
