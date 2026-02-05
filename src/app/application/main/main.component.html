@@ -7,7 +7,7 @@
   </div>
 
   <!-- Stepper for mobile -->
-  <div class="d-flex d-md-none align-items-center justify-content-center fs-25">
+  <div class="d-flex d-md-none align-items-center justify-content-center fs-25 py-2">
     <i (click)="previousClicked()" *ngIf="activeIndex > 0" class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
     <div class="mx-3">{{items[activeIndex].label}}</div>
     <i (click)="nextButonClicked()" *ngIf="activeIndex < 5" class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>

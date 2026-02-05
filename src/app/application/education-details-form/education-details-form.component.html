@@ -4,10 +4,14 @@
     <form [formGroup]="educationForm">
         <!-- Graduation Form -->
         <div formGroupName="graduationForm">
-            <div class="fw-bold fs-5">Graduation</div>
             <div class="row">
-                <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
-                    <span class="ms-3">:</span></label>
+                <label class="col-6 fw-bold fs-5">Graduation</label>
+            </div>
+
+            <div class="row align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="text" class="col-6" formControlName="instituteName" placeholder="Institution Name" />
             </div>
 
@@ -20,9 +24,10 @@
                     class="col-6 validationError">Institution Name is required</div>
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
-                        class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="date" class="col-6" formControlName="startDate" [attr.max]="today"
                     (ngModelChange)="startDateChanges('graduationForm')">
             </div>
@@ -34,9 +39,10 @@
                     class="col-6 validationError">Start Date is required</div>
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
-                        class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="date" class="col-6" formControlName="endDate" [attr.max]="today"
                     (ngModelChange)="endDateChanges('graduationForm')">
             </div>
@@ -53,18 +59,25 @@
             </div>
 
 
-            <div class="row mt-2">
-                <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Grade / GPA</span>
+                    <span class="ms-auto me-3 me-md-5">:</span>
+                </label>
                 <input type="text" class="col-6" formControlName="marks" placeholder="Grade / GPA" />
             </div>
         </div>
 
         <!-- 12th Form -->
         <div formGroupName="twelveForm" class="mt-5">
-            <div class="fw-bold fs-5">12th Details</div>
             <div class="row">
-                <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
-                    <span class="ms-3">:</span></label>
+                <label class="col-6 fw-bold fs-5">12th Details</label>
+            </div>
+
+            <div class="row align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="text" class="col-6" formControlName="instituteName" placeholder="Institution Name" />
             </div>
             <!--Validation Error message for Institution Name -->
@@ -76,9 +89,11 @@
                     class="col-6 validationError">Institution Name is required</div>
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
-                        class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span>
+                </label>
                 <input type="date" class="col-6" formControlName="startDate" [attr.max]="today"
                     (ngModelChange)="startDateChanges('twelveForm')">
             </div>
@@ -90,9 +105,11 @@
                     class="col-6 validationError">Start Date is required</div>
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
-                        class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span>
+                </label>
                 <input type="date" class="col-6" formControlName="endDate" [attr.max]="today"
                     (ngModelChange)="endDateChanges('twelveForm')">
             </div>
@@ -108,18 +125,25 @@
             </div>
 
 
-            <div class="row mt-2">
-                <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Grade / GPA</span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="text" class="col-6" formControlName="marks" placeholder="Grade / GPA" />
             </div>
         </div>
 
         <!-- Tenth Form -->
         <div formGroupName="tenthForm" class="mt-5">
-            <div class="fw-bold fs-5">10th Details</div>
             <div class="row">
-                <label class="col-6">Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i>
-                    <span class="ms-3">:</span></label>
+                <label class="col-6 fw-bold fs-5">10th Details</label>
+            </div>
+
+            <div class="row align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Institution Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span>
+                </label>
                 <input type="text" class="col-6" formControlName="instituteName" placeholder="Institution Name" />
             </div>
             <!--Validation Error message for Institution Name -->
@@ -131,9 +155,10 @@
                     class="col-6 validationError">Institution Name is required</div>
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
-                        class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Start Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="date" class="col-6" formControlName="startDate" [attr.max]="today"
                     (ngModelChange)="startDateChanges('tenthForm')">
             </div>
@@ -145,9 +170,10 @@
                     class="col-6 validationError">Start Date is required</div>
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span
-                        class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>End Date <i class="fa fa-asterisk required-mark" aria-hidden="true"></i></span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="date" class="col-6" formControlName="endDate" [attr.max]="today"
                     (ngModelChange)="endDateChanges('tenthForm')">
             </div>
@@ -164,8 +190,10 @@
             </div>
 
 
-            <div class="row mt-2">
-                <label class="col-6">Grade / GPA (Optional) <span class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Grade / GPA</span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="text" class="col-6" formControlName="marks" placeholder="Grade / GPA" />
             </div>
         </div>

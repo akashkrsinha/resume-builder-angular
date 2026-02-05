@@ -3,57 +3,78 @@
 
     <form [formGroup]="personalInfoForm">
         <!-- Name -->
-        <div class="row">
-            <label class="col-6">Full Name <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span class="ms-3">:</span></label>
-            <input type="text" formControlName="name" class="col-6" placeholder="Name"/>
+        <div class="row align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>Full Name <i class="fa fa-asterisk required-mark ms-1" aria-hidden="true"></i> </span>
+                <span class="ms-auto me-3 me-md-5">:</span>
+            </label>
+            <input type="text" formControlName="name" class="col-6" placeholder="Name" />
         </div>
-        <div *ngIf="personalInfoForm.get('name')?.touched && personalInfoForm.get('name')?.invalid" class="error-text">Name is required</div>
+        <div *ngIf="personalInfoForm.get('name')?.touched && personalInfoForm.get('name')?.invalid" class="error-text">
+            Name is required</div>
 
         <!-- Email -->
-        <div class="row mt-4">
-            <label class="col-6">Email <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span class="ms-3">:</span></label>
-            <input type="email" formControlName="email" class="col-6" placeholder="Email Id"/>
+        <div class="row mt-4 align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>Email <i class="fa fa-asterisk required-mark ms-1" aria-hidden="true"></i></span>
+                <span class="ms-auto me-3 me-md-5">:</span>
+            </label>
+            <input type="email" formControlName="email" class="col-6" placeholder="Email Id" />
         </div>
-        <div *ngIf="personalInfoForm.get('email')?.touched && personalInfoForm.get('email')?.errors?.['required']" class="error-text">Email is required</div>
-        <div *ngIf="personalInfoForm.get('email')?.touched && (personalInfoForm.get('email')?.errors?.['pattern'] || personalInfoForm.get('email')?.errors?.['email'])" class="error-text">Email is not valid</div>
+        <div *ngIf="personalInfoForm.get('email')?.touched && personalInfoForm.get('email')?.errors?.['required']"
+            class="error-text">Email is required</div>
+        <div *ngIf="personalInfoForm.get('email')?.touched && (personalInfoForm.get('email')?.errors?.['pattern'] || personalInfoForm.get('email')?.errors?.['email'])"
+            class="error-text">Email is not valid</div>
 
         <!-- Mobile -->
-        <div class="row mt-4">
-            <label class="col-6">Mobile Number <i class="fa fa-asterisk required-mark" aria-hidden="true"></i> <span class="ms-3">:</span></label>
-            <input type="tel" formControlName="mobile" class="col-6" placeholder="Mobile Number"/>
+        <div class="row mt-4 align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>Mobile Number <i class="fa fa-asterisk required-mark ms-1" aria-hidden="true"></i></span>
+                <span class="ms-auto me-3 me-md-5">:</span></label>
+            <input type="tel" formControlName="mobile" class="col-6" placeholder="Mobile Number" />
         </div>
-        <div *ngIf="personalInfoForm.get('mobile')?.touched && personalInfoForm.get('mobile')?.errors?.['required']" class="error-text">Mobile Number is required</div>
-        <div *ngIf="personalInfoForm.get('mobile')?.touched && personalInfoForm.get('mobile')?.errors?.['pattern']" class="error-text">Mobile Number is not valid</div>
+        <div *ngIf="personalInfoForm.get('mobile')?.touched && personalInfoForm.get('mobile')?.errors?.['required']"
+            class="error-text">Mobile Number is required</div>
+        <div *ngIf="personalInfoForm.get('mobile')?.touched && personalInfoForm.get('mobile')?.errors?.['pattern']"
+            class="error-text">Mobile Number is not valid</div>
 
         <!-- Address -->
-        <div class="row mt-4">
-            <label class="col-6">Address (Optional) <span class="ms-3">:</span></label>
-            <input type="text" formControlName="address" class="col-6" placeholder="Address"/>
+        <div class="row mt-4 align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>Address</span>
+                <span class="ms-auto me-3 me-md-5">:</span></label>
+            <input type="text" formControlName="address" class="col-6" placeholder="Address" />
         </div>
 
         <!-- LinkedIn -->
-        <div class="row mt-4">
-            <label class="col-6">LinkedIn URL (Optional) <span class="ms-3">:</span></label>
-            <input type="text" formControlName="linkedURL" class="col-6" placeholder="LinkedIn URL"/>
+        <div class="row mt-4 align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>LinkedIn URL</span>
+                <span class="ms-auto me-3 me-md-5">:</span></label>
+            <input type="text" formControlName="linkedURL" class="col-6" placeholder="LinkedIn URL" />
         </div>
 
         <!-- GitHub -->
-        <div class="row mt-4">
-            <label class="col-6">GitHub URL (Optional) <span class="ms-3">:</span></label>
-            <input type="text" formControlName="gitHubURL" class="col-6" placeholder="GitHub URL"/>
+        <div class="row mt-4 align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>GitHub URL</span>
+                <span class="ms-auto me-3 me-md-5">:</span></label>
+            <input type="text" formControlName="gitHubURL" class="col-6" placeholder="GitHub URL" />
         </div>
 
         <!-- Image -->
-        <div class="row mt-4">
-            <label class="col-6">Upload a Image (Optional) <span class="ms-3">:</span></label>
-            <input type="file" class="col-6 pointer" (change)="uploadImage($event)" accept="image/*"/>
+        <div class="row mt-4 align-items-center">
+            <label class="col-6 d-flex align-items-center">
+                <span>Upload Image</span>
+                <span class="ms-auto me-3 me-md-5">:</span></label>
+            <input type="file" class="col-6 pointer" (change)="uploadImage($event)" accept="image/*" />
 
         </div>
-        
+
         <!-- Image Preview -->
         <div class="row mt-4" *ngIf="uploadedImageURL">
             <label class="col-6">Uploaded Image Preview</label>
-            <img [src]="uploadedImageURL" alt="Uploaded Image" class="col-6 uploadedImage"/>
+            <img [src]="uploadedImageURL" alt="Uploaded Image" class="col-6 uploadedImage" />
         </div>
     </form>
 
@@ -61,5 +82,6 @@
 
 <!-- Button -->
 <div class="mt-5 d-flex justify-content-end w-100">
-  <button class="button btn-next" (click)=submitAndNext() [title]="personalInfoForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+    <button class="button btn-next" (click)=submitAndNext()
+        [title]="personalInfoForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
 </div>
