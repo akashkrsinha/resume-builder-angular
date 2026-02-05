@@ -51,7 +51,7 @@ export class LoginComponent {
   }
 
   signupClicked() {
-    this.router.navigateByUrl('signup')
+    this.router.navigateByUrl('auth/signup')
   }
 
   loginGuest() {

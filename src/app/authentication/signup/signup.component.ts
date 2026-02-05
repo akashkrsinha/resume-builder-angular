@@ -50,6 +50,6 @@ export class SignupComponent {
   }
 
   loginClicked() {
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('auth/login');
   }
 }

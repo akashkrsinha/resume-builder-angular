@@ -13,7 +13,7 @@
     <i (click)="nextButonClicked()" *ngIf="activeIndex < 5" class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
   </div>
 
-  <div class="h-auto p-4">
+  <div class="h-auto">
     <div class="d-flex justify-content-center align-items-center">
       <ng-container [ngSwitch]="activeIndex">
         <div [ngClass]="{'form-container': activeIndex != 6, 'w-100': activeIndex == 6 }">
