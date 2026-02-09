@@ -3,6 +3,7 @@ import { FormDataService } from 'src/app/services/form-data.service';
 // @ts-ignore
 import * as html2pdf from 'html2pdf.js';
 import Swal from 'sweetalert2';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-resume-review',
@@ -17,10 +18,11 @@ export class ResumeReviewComponent {
   workExpKeys: any = [];
   projectsKeys: any = [];
   educationKeys: any = [];
+  isDownloading = false;
   @ViewChild('downloadSection') downloadSection!: ElementRef;
   @Output() previousClicked = new EventEmitter();
 
-  constructor(public formDataService: FormDataService) {
+  constructor(public formDataService: FormDataService, private ChangeDetectorRef: ChangeDetectorRef) {
     this.initialiseData();
   }
 
@@ -43,18 +45,28 @@ export class ResumeReviewComponent {
   }
 
   download() {
+    this.isDownloading = true;
+
     const element = this.downloadSection.nativeElement;
-    element.setAttribute('style', 'width: 100%; max-width: 100%;');
+    element.style.width = '794px';       // A4 width
+    element.style.height = '1080px';      // A4 height
+    element.style.boxSizing = 'border-box';
+
 
     const opt = {
       margin: 0.2,
       filename: 'Resume.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
 
     html2pdf().set(opt).from(element).save().then(() => {
+      this.isDownloading = false;
+      element.style.height = 'auto'; //Reseting height
+      element.style.display = 'block';
+      this.ChangeDetectorRef.detectChanges(); 
+
       Swal.fire({
         toast: true,
         icon: 'success',
@@ -65,6 +77,9 @@ export class ResumeReviewComponent {
         timerProgressBar: true
       });
     }).catch(() => {
+      this.isDownloading = false;
+      this.ChangeDetectorRef.detectChanges(); 
+
       Swal.fire({
         toast: true,
         icon: 'error',

@@ -6,28 +6,38 @@
         <div *ngFor="let projectNumber of numberOfProjects; let idx=index;" [formGroupName]="'project' + projectNumber">
             <div class="fw-bold text-center" [ngClass]="{'mt-3' : idx != 0}">Project {{projectNumber}}</div>
 
-            <div class="row mt-3">
-                <label class="col-6">Project Name<span class="ms-3">:</span></label>
+            <div class="row mt-3 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Project Name</span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <input type="text" class="col-6" formControlName="projectName" placeholder="Project Name" />
             </div>
 
-            <div class="row mt-2">
-                <label class="col-6">Description<span class="ms-3">:</span></label>
+            <div class="row mt-2 align-items-center">
+                <label class="col-6 d-flex align-items-center">
+                    <span>Description</span>
+                    <span class="ms-auto me-3 me-md-5">:</span></label>
                 <textarea formControlName="projectDescription" rows="5" class="col-6"
                     placeholder="Description"></textarea>
             </div>
         </div>
     </form>
 
-    <button (click)="createDynamicForm()" class="d-flex align-items-center button btn-add mt-3">Add Projects <i
-            class="fa fa-plus ms-2" aria-hidden="true"></i></button>
+    <div class="row mt-5">
+        <div class="col-12 button-container">
+            <button (click)="createDynamicForm()" class="d-flex align-items-center button btn-add mt-3">Add Projects <i
+                    class="fa fa-plus ms-2" aria-hidden="true"></i></button>
+        </div>
+    </div>
 
 
     <!-- Previous and Next Buttons -->
-    <div class="mt-5 d-flex justify-content-between w-100">
-        <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
+    <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-between button-container">
+            <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
 
-        <button class="button btn-next" (click)=submitAndNext()
-            [title]="projectForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+            <button class="button btn-next" (click)=submitAndNext()
+                [title]="projectForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+        </div>
     </div>
 </div>

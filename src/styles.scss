@@ -24,13 +24,41 @@ body {
     width: 100%;
 }
 
-
 .button {
     outline: none;
     border: none;
     padding: 6px 15px 6px 15px;
     color: white;
     border-radius: 5px;
+}
+
+.btn-next {
+    background-color: green;
+}
+
+.button.btn-next:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-next:hover {
+    background-color: rgb(17, 195, 17);
+}
+
+.button-container{
+    padding: 0 !important;
+}
+
+.btn-add {
+    background-color: #1290ff;
+}
+
+.btn-previous {
+    background-color: red;
+}
+
+.btn-previous:hover {
+    background-color: rgb(223, 3, 3);
 }
 
 input,
@@ -53,36 +81,6 @@ label {
     top: 5px;
     font-size: 8px !important;
     color: red;
-}
-
-.btn-next {
-    background-color: green;
-}
-
-.button.btn-next:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.btn-next:hover {
-    background-color: rgb(17, 195, 17);
-}
-
-.btn-add {
-    background-color: #4facfe;
-}
-
-.btn-previous {
-    background-color: red;
-}
-
-.btn-previous:hover {
-    background-color: rgb(223, 3, 3);
-}
-
-.required-mark {
-    font-size: 5px;
-
 }
 
 .br-6 {

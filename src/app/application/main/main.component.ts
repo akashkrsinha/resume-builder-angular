@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
     { label: 'Skills' },
     { label: 'Projects' },
     { label: 'Summary' },
-    { label: 'Review' },
+    { label: 'Review', disabled: true },
   ];
 
   activeIndex = 0;
@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
   }
 
   onActiveIndexChange(stepIndex: number) {
-    // needed, to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default.
+    // needed, to check is all form is valid or not beform review and download step, so setting up all forms as invalid by default (only first time).
     if (sessionStorage.getItem(required_forms_name[0]) == null) {
       required_forms_name.forEach((formName: any) => {
         sessionStorage.setItem(formName, 'invalid');

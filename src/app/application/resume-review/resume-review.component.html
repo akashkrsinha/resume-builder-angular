@@ -1,9 +1,9 @@
 <div class="container ">
-    <div class="text-center fw-bold fs-5 mb-3">Review and Download Your Resume</div>
+    <div *ngIf="!isDownloading" class="text-center fw-bold fs-5 mb-3">Review and Download Your Resume</div>
 
     <div class="d-flex justify-content-center">
         <div class="w-65">
-            <div class="download-container p-4 w-100" #downloadSection>
+            <div class="download-container p-4 w-100" #downloadSection [hidden]="isDownloading">
                 <!-- Personal Details -->
                 <div class="personalInfo-container d-flex justify-content-between w-100 pb-2">
                     <div>
@@ -98,6 +98,10 @@
                     </div>
                 </div>
             </div>
+
+            <div class="fs-1 w-100 text-center downloading-text" *ngIf="isDownloading">
+                Your Resume is Downloading...
+            </div>
         </div>
     </div>
 </div>
@@ -107,6 +111,6 @@
     <div class="mt-5 d-flex justify-content-between p-5 w-50">
         <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
 
-        <button class="button btn-next" (click)=download()>Download (PDF)</button>
+        <button class="button btn-next" (click)=download() [disabled]="isDownloading">Download (PDF)</button>
     </div>
 </div>

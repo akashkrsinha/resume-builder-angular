@@ -1,6 +1,8 @@
 .download-container {
+    width: 794px; // A4 width
     border: 1px solid black;
-    width: 65%;
+    box-sizing: border-box;
+    background: white;
 }
 
 .imagePreview {
@@ -21,6 +23,15 @@
     overflow-wrap: break-word;
 }
 
-.degree{
+.degree {
     text-decoration: underline;
+}
+
+.download-btn-container {
+    width: 794px;
+}
+
+.downloading-text {
+    color: #2f9eff;
+    border: none;
 }

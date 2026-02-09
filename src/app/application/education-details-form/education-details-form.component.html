@@ -200,10 +200,12 @@
     </form>
 
     <!-- Button -->
-    <div class="mt-5 d-flex justify-content-between w-100">
-        <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
+    <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-between button-container">
+            <button class="button btn-previous" (click)=previous() title="Previous">Previous</button>
 
-        <button class="button btn-next" (click)=submitAndNext()
-            [title]="educationForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+            <button class="button btn-next" (click)=submitAndNext()
+                [title]="educationForm.valid ? 'Submit and Next' : 'Invalid Form'">Submit & Next</button>
+        </div>
     </div>
 </div>
